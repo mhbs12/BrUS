@@ -29,7 +29,7 @@ O **BrUS** é um layout de teclado customizado que combina a eficiência do tecl
 |-----------|-------------|
 | **Base US Layout** | Mantém todos os símbolos de programação em posições familiares |
 | **Dead Keys** | Acesso rápido a acentos (^, `, ~) usando teclas mortas |
-| **Camada AltGr** | Caracteres especiais e acentuados com `Ctrl+Alt` ou `AltGr` |
+| **Camada AltGr** | Caracteres especiais e acentuados com `Alt Direito` ou `Ctrl+Alt` |
 | **Camada Numérica** | Acesso rápido a números e símbolos usando `AltGr+Space` |
 | **Símbolos Internacionais** | Suporte a €, £, ¥, ©, ®, µ, ß e muito mais |
 
@@ -131,7 +131,9 @@ O layout base é idêntico ao US QWERTY padrão:
 
 ---
 
-## 🎨 Camada AltGr (Ctrl+Alt)
+## 🎨 Camada AltGr (Alt Direito ou Ctrl+Alt)
+
+> ⚠️ **Nota:** Em teclados US, a tecla `AltGr` é a tecla **Alt direita** (Right Alt). Você também pode usar `Ctrl + Alt` como alternativa.
 
 A camada AltGr fornece acesso rápido a caracteres acentuados e símbolos especiais:
 
@@ -332,19 +334,6 @@ resultado = 10 × 5 ÷ 2  # × com AltGr+=, ÷ com Shift+AltGr+=
 print("© 2025 Empresa®")  # © com AltGr+V, ® com AltGr+R
 ```
 
-### Usando a Camada Numérica
-
-```
-Para digitar "arquivo123":
-1. Digite "arquivo"
-2. Pressione AltGr + Space
-3. Pressione 'a' para '1'
-4. Pressione AltGr + Space novamente
-5. Pressione 's' para '2'
-6. Pressione AltGr + Space novamente
-7. Pressione 'd' para '3'
-```
-
 ---
 
 ## 🆚 Comparação com Outros Layouts
@@ -357,19 +346,6 @@ Para digitar "arquivo123":
 | Camada numérica | ✅ | ❌ | ❌ |
 | Cedilha fácil | ✅ | ✅ | ❌ |
 | Símbolos de programação | ✅ | ❌ | ✅ |
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-BrUS/
-├── BrUS.klc          # Arquivo fonte do layout
-├── README.md         # Este arquivo
-├── LICENSE           # Licença MIT
-└── releases/         # Instaladores compilados (quando disponíveis)
-    └── setup.exe
-```
 
 ---
 
@@ -402,16 +378,6 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 **Murilo Beraldo**
 - GitHub: [@mhbs12](https://github.com/mhbs12)
-
----
-
-## 🙏 Agradecimentos
-
-- Microsoft Keyboard Layout Creator
-- Comunidade de desenvolvedores brasileiros
-- Todos os contribuidores
-
----
 
 <div align="center">
 
