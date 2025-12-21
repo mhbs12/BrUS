@@ -1,14 +1,20 @@
 #!/bin/bash
 
+# URLs do Repositório
 REPO_RAW="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/symbols/brus"
+REPO_XCOMPOSE="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/.XCompose"
+
+# Diretórios e Arquivos Locais
 DEST_DIR="$HOME/.config/xkb/symbols"
+XCOMPOSE_FILE="$HOME/.XCompose"
 AUTOSTART_DIR="$HOME/.config/autostart"
 HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
 ACTIVATE_SCRIPT="$HOME/.brus-activate.sh"
 
 echo "Instalando BrUS-v1..."
 
-# Cria o diretório de símbolos e baixa o arquivo
+# 1. Instalação do Layout XKB
+# Cria o diretório de símbolos
 mkdir -p "$DEST_DIR"
 
 # Baixa o mapa de teclas do repositório
@@ -19,9 +25,28 @@ else
     exit 1
 fi
 
+# 2. Instalação do XCompose (Necessário para Dead Keys personalizadas)
+echo "Configurando regras de composição (.XCompose)..."
+
+# Backup se já existir e não for um link simbólico
+if [ -f "$XCOMPOSE_FILE" ] && [ ! -L "$XCOMPOSE_FILE" ]; then
+    # Verifica se já é o nosso arquivo (opcional, evita backup desnecessário)
+    if ! grep -q "BrUS" "$XCOMPOSE_FILE"; then
+        mv "$XCOMPOSE_FILE" "$XCOMPOSE_FILE.backup.$(date +%F_%T)"
+        echo "ℹ️  Backup do .XCompose antigo criado."
+    fi
+fi
+
+# Baixa o .XCompose
+if curl -sL "$REPO_XCOMPOSE" -o "$XCOMPOSE_FILE"; then
+    echo "✓ Arquivo .XCompose baixado para $HOME"
+else
+    echo "⚠ Aviso: Não foi possível baixar o .XCompose. As dead keys personalizadas podem não funcionar."
+fi
+
 echo ""
 echo "---"
-echo "Instalação do arquivo de símbolos concluída!"
+echo "Instalação dos arquivos concluída!"
 echo ""
 
 # Instruções para Hyprland
@@ -49,6 +74,8 @@ if [[ $ACTIVATE_NOW =~ ^[YySs]$ ]]; then
     
     # 1. Configuração de Inicialização (X11)
     echo "#!/bin/bash" > "$ACTIVATE_SCRIPT"
+    # Importante: Definir onde está o arquivo Compose
+    echo "export XCOMPOSEFILE=$HOME/.XCompose" >> "$ACTIVATE_SCRIPT" 
     echo "setxkbmap -layout brus -variant BrUS-v1 -print | xkbcomp -I$HOME/.config/xkb - \$DISPLAY" >> "$ACTIVATE_SCRIPT"
     chmod +x "$ACTIVATE_SCRIPT"
 
@@ -72,6 +99,8 @@ EOF
 
     # 3. Aplicação imediata para a sessão atual (X11)
     if [ -n "$DISPLAY" ]; then
+        # Exporta variável na sessão atual antes de rodar o script
+        export XCOMPOSEFILE=$HOME/.XCompose
         if bash "$ACTIVATE_SCRIPT" 2>/dev/null; then
             echo "✓ Layout BrUS-v1 ativado para a sessão atual (X11)"
         else
@@ -339,4 +368,5 @@ else
     echo ""
     echo "Sucesso! O layout BrUS-v1 foi instalado."
     echo "O arquivo de símbolos está em: ~/.config/xkb/symbols/brus"
+    echo "O arquivo de composição está em: ~/.XCompose"
 fi
