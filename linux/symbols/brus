@@ -1,75 +1,87 @@
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 
-    name[Group1]= "Portuguese (Brazil) - BrUS MHBS12";
+    name[Group1]= "Portuguese (Brazil) - BrUS MHBS12 (Normal)";
+    name[Group2]= "Portuguese (Brazil) - BrUS MHBS12 (Numeric Mode)";
+
+    // Define que o layout tem 2 grupos
+    // Group1: Normal + AltGr
+    // Group2: Camada Numérica (ativada pelo Lock)
     
-    // Carrega o layout US base
     include "us(basic)"
+    include "level3(ralt_switch)"
+
+    // --- Lógica do Lock (AltGr + Espaço) ---
+    // A tecla Space no nível 3 (AltGr+Space) dispara "ISO_Next_Group", que muda para o Grupo 2
+    key <SPCE> { 
+        type[Group1]="FOUR_LEVEL",
+        symbols[Group1]= [ space, space, ISO_Next_Group, space ],
+        symbols[Group2]= [ space, space, ISO_Prev_Group, space ]
+    };
+
+    // --- Mapeamento das Teclas (Group1 = Normal, Group2 = Numérico) ---
+
+    // Fileira ASDF (Números no Group2)
+    key <AC01> { [ a, A, aacute, Aacute ],  [ 1, 1, void, void ] }; // a -> 1
+    key <AC02> { [ s, S, atilde, section ], [ 2, 2, void, void ] }; // s -> 2
+    key <AC03> { [ d, D, ecircumflex, ETH ],[ 3, 3, void, void ] }; // d -> 3
+    key <AC04> { [ f, F, parenleft, void ], [ 4, 4, void, void ] }; // f -> 4
+    key <AC05> { [ g, G, parenright, void ],[ 5, 5, void, void ] }; // g -> 5
+    key <AC06> { [ h, H, underscore, void ],[ 6, 6, void, void ] }; // h -> 6
+    key <AC07> { [ j, J, equal, void ],     [ 7, 7, void, void ] }; // j -> 7
+    key <AC08> { [ k, K, plus, void ],      [ 8, 8, void, void ] }; // k -> 8
+    key <AC09> { [ l, L, minus, Ooblique ], [ 9, 9, void, void ] }; // l -> 9
+    key <AC10> { [ semicolon, colon, ocircumflex, degree ], [ 0, 0, void, void ] }; // ; -> 0
+
+    // Fileira QWERTY (Comandos e Símbolos no Group2)
+    key <AD01> { [ q, Q, acircumflex, Adiaeresis ], [ Delete, Delete, void, void ] };   // q -> Delete
+    key <AD02> { [ w, W, agrave, Aring ],           [ BackSpace, BackSpace, void, void ] }; // w -> Backspace
     
-    // --- CORREÇÃO DO ALTGR ---
-    // Força o Alt Direito a funcionar como seletor de 3º nível (AltGr)
+    key <AD03> { [ e, E, eacute, Eacute ], [ exclam, exclam, void, void ] };    // e -> !
+    key <AD04> { [ r, R, registered, void ], [ at, at, void, void ] };          // r -> @
+    key <AD05> { [ t, T, thorn, THORN ],   [ numbersign, numbersign, void, void ] }; // t -> #
+    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ], [ dollar, dollar, void, void ] }; // y -> $
+    key <AD07> { [ u, U, uacute, Uacute ], [ percent, percent, void, void ] };  // u -> %
+    key <AD08> { [ i, I, iacute, Iacute ], [ asciicircum, asciicircum, void, void ] }; // i -> ^
+    key <AD09> { [ o, O, oacute, Oacute ], [ ampersand, ampersand, void, void ] }; // o -> &
+    key <AD10> { [ p, P, otilde, Odiaeresis ], [ asterisk, asterisk, void, void ] }; // p -> *
+
+    // --- Resto do Layout Normal (Apenas Group1 definido explicitamente onde não muda) ---
+    // Nota: O XKB herda o Group1 para o Group2 se não definirmos, mas é bom ser explícito
+    // Mantendo suas definições originais para o resto:
+
+    // Fileira Numérica Original (Não muda no modo numérico ou mantém)
+    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
+    key <AE02> { [ 2, at, void, twosuperior ] };
+    key <AE03> { [ 3, numbersign, void, threesuperior ] };
+    key <AE04> { [ 4, dollar, currency, sterling ] };
+    key <AE05> { [ 5, percent, EuroSign, void ] };
+    key <AE06> { [ 6, dead_circumflex, onequarter, void ] };
+    key <AE07> { [ 7, ampersand, onehalf, void ] };
+    key <AE08> { [ 8, asterisk, threequarters, void ] };
+    key <AE09> { [ 9, parenleft, leftsinglequotemark, void ] };
+    key <AE10> { [ 0, parenright, rightsinglequotemark, void ] };
+    key <AE11> { [ minus, underscore, yen, void ] };
+    key <AE12> { [ equal, plus, multiply, division ] };
+    
+    // Outras teclas (mantém comportamento normal nos dois grupos se não sobrescrever)
+    key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] };
+    key <AD12> { [ bracketright, braceright, void, guillemotright ] };
+    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
+    key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };
+    
+    key <AB01> { [ z, Z, ae, AE ] };
+    key <AB02> { [ x, X, asciitilde, void ] };
+    key <AB03> { [ c, C, ccedilla, cent ] };
+    key <AB04> { [ v, V, copyright, void ] };
+    key <AB05> { [ b, B, ssharp, void ] };
+    key <AB06> { [ n, N, ntilde, Ntilde ] };
+    key <AB07> { [ m, M, mu, void ] };
+    key <AB08> { [ comma, less, eth, Ccedilla ] };
+    key <AB09> { [ period, greater, oslash, void ] };
+    key <AB10> { [ slash, question, questiondown, void ] };
+
+    // Força AltGr
     key <RALT> { type[Group1]="ONE_LEVEL", [ ISO_Level3_Shift ] };
     modifier_map Mod5 { ISO_Level3_Shift };
-
-    // --- Definindo o comportamento das teclas ---
-
-    // Fileira dos Números
-    // AltGr+Grave (TLDE) usa dead_ogonek como gatilho para acentos graves
-    key <TLDE> { [ grave, asciitilde, dead_ogonek, dead_ogonek ] };
-    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
-    key <AE02> { [ 2, at, NoSymbol, twosuperior ] };
-    key <AE03> { [ 3, numbersign, NoSymbol, threesuperior ] };
-    key <AE04> { [ 4, dollar, currency, sterling ] };
-    key <AE05> { [ 5, percent, EuroSign, NoSymbol ] };
-    key <AE06> { [ 6, dead_circumflex, onequarter, NoSymbol ] };
-    key <AE07> { [ 7, ampersand, onehalf, NoSymbol ] };
-    key <AE08> { [ 8, asterisk, threequarters, NoSymbol ] };
-    key <AE09> { [ 9, parenleft, leftsinglequotemark, NoSymbol ] };
-    key <AE10> { [ 0, parenright, rightsinglequotemark, NoSymbol ] };
-    key <AE11> { [ minus, underscore, yen, NoSymbol ] };
-    key <AE12> { [ equal, plus, multiply, division ] };
-
-    // Fileira QWERTY
-    key <AD01> { [ q, Q, acircumflex, Adiaeresis ] };
-    key <AD02> { [ w, W, agrave, Aring ] };
-    key <AD03> { [ e, E, eacute, Eacute ] };
-    key <AD04> { [ r, R, registered, NoSymbol ] };
-    key <AD05> { [ t, T, thorn, THORN ] };
-    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ] };
-    key <AD07> { [ u, U, uacute, Uacute ] };
-    key <AD08> { [ i, I, iacute, Iacute ] };
-    key <AD09> { [ o, O, oacute, Oacute ] };
-    key <AD10> { [ p, P, otilde, Odiaeresis ] };
-    key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] };
-    key <AD12> { [ bracketright, braceright, NoSymbol, guillemotright ] };
-    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
-
-    // Fileira ASDFG
-    key <AC01> { [ a, A, aacute, Aacute ] };
-    key <AC02> { [ s, S, atilde, section ] };
-    key <AC03> { [ d, D, ecircumflex, ETH ] };
-    key <AC04> { [ f, F, parenleft, NoSymbol ] };
-    key <AC05> { [ g, G, parenright, NoSymbol ] };
-    key <AC06> { [ h, H, underscore, NoSymbol ] };
-    key <AC07> { [ j, J, equal, NoSymbol ] };
-    key <AC08> { [ k, K, plus, NoSymbol ] };
-    key <AC09> { [ l, L, minus, Ooblique ] };
-    key <AC10> { [ semicolon, colon, ocircumflex, degree ] };
-    key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };
-
-    // Fileira ZXCVB
-    key <AB01> { [ z, Z, ae, AE ] };
-    key <AB02> { [ x, X, asciitilde, NoSymbol ] };
-    key <AB03> { [ c, C, ccedilla, cent ] };
-    key <AB04> { [ v, V, copyright, NoSymbol ] };
-    key <AB05> { [ b, B, ssharp, NoSymbol ] };
-    key <AB06> { [ n, N, ntilde, Ntilde ] };
-    key <AB07> { [ m, M, mu, NoSymbol ] };
-    key <AB08> { [ comma, less, eth, Ccedilla ] };
-    key <AB09> { [ period, greater, oslash, NoSymbol ] };
-    key <AB10> { [ slash, question, questiondown, NoSymbol ] };
-
-    // Barra de Espaço
-    // AltGr+Espaço ativa o dead_horn (usado no XCompose)
-    key <SPCE> { [ space, space, dead_horn, space ] };
 };
