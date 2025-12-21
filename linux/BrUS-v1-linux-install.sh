@@ -12,9 +12,7 @@ echo "Instalando BrUS-v1..."
 mkdir -p "$DEST_DIR"
 
 # Baixa o mapa de teclas do repositório
-curl -sL "$REPO_RAW" -o "$DEST_DIR/brus"
-
-if [ $? -eq 0 ]; then
+if curl -sL "$REPO_RAW" -o "$DEST_DIR/brus"; then
     echo "✓ Arquivo de símbolos baixado para $DEST_DIR/brus"
 else
     echo "✗ Erro ao baixar o arquivo de símbolos"
@@ -74,7 +72,7 @@ EOF
 
     # 3. Aplicação imediata para a sessão atual (X11)
     if [ -n "$DISPLAY" ]; then
-        if sh "$ACTIVATE_SCRIPT" 2>/dev/null; then
+        if bash "$ACTIVATE_SCRIPT" 2>/dev/null; then
             echo "✓ Layout BrUS-v1 ativado para a sessão atual (X11)"
         else
             echo "⚠ Não foi possível ativar o layout imediatamente (pode não estar em X11)"
