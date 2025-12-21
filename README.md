@@ -5,7 +5,8 @@
 ### *O melhor dos dois mundos: layout US com suporte completo ao Português Brasileiro*
 
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/mhbs12/BrUS/releases)
-[![Version](https://img.shields.io/badge/Version-1.0-brightgreen?style=for-the-badge)](https://github.com/mhbs12/BrUS)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/mhbs12/BrUS)
+[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/mhbs12/BrUS)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/mhbs12)
 
@@ -103,6 +104,18 @@ Configurações → Hora e idioma → Idioma e região → Português (Brasil)
 ```
 
 > 💡 **Dica:** Use `Win + Espaço` para alternar rapidamente entre layouts de teclado.
+
+---
+
+## 🐧 Instalação no Linux
+
+### Instalação Automática
+
+Execute o seguinte comando no terminal:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/BrUS-v1-linux-install.sh)"
+```
 
 ---
 
