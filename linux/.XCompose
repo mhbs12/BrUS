@@ -1,0 +1,45 @@
+# Inclui as definições padrões do sistema primeiro
+include "%L"
+
+# --- Mapeamento do AltGr+Espaço (usando dead_horn como gatilho) ---
+# Comportamento: Transforma letras em números/símbolos
+
+<dead_horn> <a> : "1"
+<dead_horn> <s> : "2"
+<dead_horn> <d> : "3"
+<dead_horn> <f> : "4"
+<dead_horn> <g> : "5"
+<dead_horn> <h> : "6"
+<dead_horn> <j> : "7"
+<dead_horn> <k> : "8"
+<dead_horn> <l> : "9"
+<dead_horn> <semicolon> : "0"
+
+<dead_horn> <q> : Delete      # q -> Delete
+<dead_horn> <w> : BackSpace   # w -> Backspace
+
+<dead_horn> <e> : "!"
+<dead_horn> <r> : "@"
+<dead_horn> <t> : "#"
+<dead_horn> <y> : "$"
+<dead_horn> <u> : "%"
+<dead_horn> <i> : "^"
+<dead_horn> <o> : "&"
+<dead_horn> <p> : "*"
+
+<dead_horn> <space> : " "
+
+# --- Mapeamento do AltGr+Grave (usando dead_ogonek como gatilho) ---
+# Comportamento: Idêntico ao acento grave padrão, mas Space gera ’ (Aspas simples direita)
+
+<dead_ogonek> <a> : "à"
+<dead_ogonek> <e> : "è"
+<dead_ogonek> <i> : "ì"
+<dead_ogonek> <o> : "ò"
+<dead_ogonek> <u> : "ù"
+<dead_ogonek> <A> : "À"
+<dead_ogonek> <E> : "È"
+<dead_ogonek> <I> : "Ì"
+<dead_ogonek> <O> : "Ò"
+<dead_ogonek> <U> : "Ù"
+<dead_ogonek> <space> : "’"
