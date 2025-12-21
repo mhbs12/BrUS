@@ -6,65 +6,60 @@ xkb_symbols "BrUS-v1" {
     include "level3(ralt_switch)"
 
     // --- Fileira dos Números ---
-    // AltGr+Grave é uma Dead Key especial (usamos dead_ogonek como gatilho)
     key <TLDE> { [ grave, asciitilde, dead_ogonek, dead_ogonek ] }; 
-    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };      // 1 ! ¡ ¹
-    key <AE02> { [ 2, at, void, twosuperior ] };                // 2 @   ²
-    key <AE03> { [ 3, numbersign, void, threesuperior ] };      // 3 #   ³
-    key <AE04> { [ 4, dollar, currency, sterling ] };           // 4 $ ¤ £
-    key <AE05> { [ 5, percent, EuroSign, void ] };              // 5 % €
-    key <AE06> { [ 6, dead_circumflex, onequarter, void ] };    // 6 ^ ¼
-    key <AE07> { [ 7, ampersand, onehalf, void ] };             // 7 & ½
-    key <AE08> { [ 8, asterisk, threequarters, void ] };        // 8 * ¾
-    key <AE09> { [ 9, parenleft, leftsinglequotemark, void ] }; // 9 ( ‘
-    key <AE10> { [ 0, parenright, rightsinglequotemark, void ] };// 0 ) ’
-    key <AE11> { [ minus, underscore, yen, void ] };            // - _ ¥
-    key <AE12> { [ equal, plus, multiply, division ] };         // = + × ÷
+    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
+    key <AE02> { [ 2, at, void, twosuperior ] };
+    key <AE03> { [ 3, numbersign, void, threesuperior ] };
+    key <AE04> { [ 4, dollar, currency, sterling ] };
+    key <AE05> { [ 5, percent, EuroSign, void ] };
+    key <AE06> { [ 6, dead_circumflex, onequarter, void ] };
+    key <AE07> { [ 7, ampersand, onehalf, void ] };
+    key <AE08> { [ 8, asterisk, threequarters, void ] };
+    key <AE09> { [ 9, parenleft, leftsinglequotemark, void ] };
+    key <AE10> { [ 0, parenright, rightsinglequotemark, void ] };
+    key <AE11> { [ minus, underscore, yen, void ] };
+    key <AE12> { [ equal, plus, multiply, division ] };
 
     // --- Fileira QWERTY ---
-    key <AD01> { [ q, Q, acircumflex, Adiaeresis ] };           // q Q â Ä
-    key <AD02> { [ w, W, agrave, Aring ] };                     // w W à Å
-    key <AD03> { [ e, E, eacute, Eacute ] };                    // e E é É
-    key <AD04> { [ r, R, registered, void ] };                  // r R ®
-    key <AD05> { [ t, T, thorn, THORN ] };                      // t T þ Þ
-    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ] };            // y Y ü Ü
-    key <AD07> { [ u, U, uacute, Uacute ] };                    // u U ú Ú
-    key <AD08> { [ i, I, iacute, Iacute ] };                    // i I í Í
-    key <AD09> { [ o, O, oacute, Oacute ] };                    // o O ó Ó
-    key <AD10> { [ p, P, otilde, Odiaeresis ] };                // p P õ Ö
-    key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] }; // [ { Esc «
-    key <AD12> { [ bracketright, braceright, void, guillemotright ] };// ] }     »
-    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };      // \ | ¬ ¦
+    key <AD01> { [ q, Q, acircumflex, Adiaeresis ] };
+    key <AD02> { [ w, W, agrave, Aring ] };
+    key <AD03> { [ e, E, eacute, Eacute ] };
+    key <AD04> { [ r, R, registered, void ] };
+    key <AD05> { [ t, T, thorn, THORN ] };
+    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ] };
+    key <AD07> { [ u, U, uacute, Uacute ] };
+    key <AD08> { [ i, I, iacute, Iacute ] };
+    key <AD09> { [ o, O, oacute, Oacute ] };
+    key <AD10> { [ p, P, otilde, Odiaeresis ] };
+    key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] };
+    key <AD12> { [ bracketright, braceright, void, guillemotright ] };
+    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
 
     // --- Fileira ASDFG ---
-    key <AC01> { [ a, A, aacute, Aacute ] };                    // a A á Á
-    key <AC02> { [ s, S, atilde, section ] };                   // s S ã §
-    key <AC03> { [ d, D, ecircumflex, ETH ] };                  // d D ê Ð
-    key <AC04> { [ f, F, parenleft, void ] };                   // f F (
-    key <AC05> { [ g, G, parenright, void ] };                  // g G )
-    key <AC06> { [ h, H, underscore, void ] };                  // h H _
-    key <AC07> { [ j, J, equal, void ] };                       // j J =
-    key <AC08> { [ k, K, plus, void ] };                        // k K +
-    key <AC09> { [ l, L, minus, Ooblique ] };                   // l L - Ø
-    key <AC10> { [ semicolon, colon, ocircumflex, degree ] };   // ; : ô °
-    key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };// ' " ¶ ¨
+    key <AC01> { [ a, A, aacute, Aacute ] };
+    key <AC02> { [ s, S, atilde, section ] };
+    key <AC03> { [ d, D, ecircumflex, ETH ] };
+    key <AC04> { [ f, F, parenleft, void ] };
+    key <AC05> { [ g, G, parenright, void ] };
+    key <AC06> { [ h, H, underscore, void ] };
+    key <AC07> { [ j, J, equal, void ] };
+    key <AC08> { [ k, K, plus, void ] };
+    key <AC09> { [ l, L, minus, Ooblique ] };
+    key <AC10> { [ semicolon, colon, ocircumflex, degree ] };
+    key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };
 
     // --- Fileira ZXCVB ---
-    key <AB01> { [ z, Z, ae, AE ] };                            // z Z æ Æ
-    key <AB02> { [ x, X, asciitilde, void ] };                  // x X ~
-    key <AB03> { [ c, C, ccedilla, cent ] };                    // c C ç ¢
-    key <AB04> { [ v, V, copyright, void ] };                   // v V ©
-    key <AB05> { [ b, B, ssharp, void ] };                      // b B ß
-    key <AB06> { [ n, N, ntilde, Ntilde ] };                    // n N ñ Ñ
-    key <AB07> { [ m, M, mu, void ] };                          // m M µ
-    key <AB08> { [ comma, less, eth, Ccedilla ] };              // , < ð Ç
-    key <AB09> { [ period, greater, oslash, void ] };           // . > ø
-    key <AB10> { [ slash, question, questiondown, void ] };     // / ? ¿
+    key <AB01> { [ z, Z, ae, AE ] };
+    key <AB02> { [ x, X, asciitilde, void ] };
+    key <AB03> { [ c, C, ccedilla, cent ] };
+    key <AB04> { [ v, V, copyright, void ] };
+    key <AB05> { [ b, B, ssharp, void ] };
+    key <AB06> { [ n, N, ntilde, Ntilde ] };
+    key <AB07> { [ m, M, mu, void ] };
+    key <AB08> { [ comma, less, eth, Ccedilla ] };
+    key <AB09> { [ period, greater, oslash, void ] };
+    key <AB10> { [ slash, question, questiondown, void ] };
 
     // --- Barra de Espaço ---
-    // AltGr+Espaço ativa o dead_horn
     key <SPCE> { [ space, space, dead_horn, space ] };
-
-    // Tecla extra (alguns teclados ABNT/ISO)
-    key <LSGT> { [ backslash, bar, notsign, brokenbar ] };
 };
