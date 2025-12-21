@@ -1,12 +1,14 @@
 #!/bin/bash
 
 REPO_RAW="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/symbols/brus"
+REPO_XCOMPOSE="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/.XCompose"
 DEST_DIR="$HOME/.config/xkb/symbols"
+DEST_COMPOSE="$HOME/.XCompose"
 AUTOSTART_DIR="$HOME/.config/autostart"
 HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
 ACTIVATE_SCRIPT="$HOME/.brus-activate.sh"
 
-echo "Instalando BrUS-v1..."
+echo "Instalando BrUS-v4 (com XCompose)..."
 
 # Cria o diretório de símbolos e baixa o arquivo
 mkdir -p "$DEST_DIR"
@@ -19,22 +21,40 @@ else
     exit 1
 fi
 
+# Baixa o .XCompose (Necessário para o layout funcionar)
+# Faz backup se já existir e não for o nosso
+if [ -f "$DEST_COMPOSE" ] && ! grep -q "BrUS" "$DEST_COMPOSE"; then
+    mv "$DEST_COMPOSE" "$DEST_COMPOSE.old.$(date +%s)"
+fi
+
+if curl -sL "$REPO_XCOMPOSE" -o "$DEST_COMPOSE"; then
+    echo "✓ Arquivo .XCompose baixado para $DEST_COMPOSE"
+else
+    echo "⚠ Erro ao baixar .XCompose"
+fi
+
 echo ""
 echo "---"
-echo "Instalação do arquivo de símbolos concluída!"
+echo "Instalação dos arquivos concluída!"
 echo ""
 
 # Instruções para Hyprland
 if [ -f "$HYPR_CONF" ]; then
     echo "📝 Para Hyprland, adicione ou edite o seguinte no seu ~/.config/hypr/hyprland.conf:"
     echo ""
+    echo "# 1. Variáveis de Ambiente (Adicione no TOPO do arquivo)"
+    echo "env = GTK_IM_MODULE,xim"
+    echo "env = QT_IM_MODULE,xim"
+    echo "env = XCOMPOSEFILE,\$HOME/.XCompose"
+    echo ""
+    echo "# 2. Configuração de Input"
     echo "input {"
     echo "    kb_layout = brus"
-    echo "    # kb_variant =    <-- Deixe comentado ou em branco (usamos o padrão 'basic')"
+    echo "    # kb_variant =    # Deixe vazio ou comentado"
     echo "    # ... suas outras configurações de input ..."
     echo "}"
     echo ""
-    echo "Depois, recarregue o Hyprland para aplicar."
+    echo "Depois, faça LOGOUT e LOGIN para aplicar as variáveis de ambiente."
     echo ""
 fi
 
@@ -49,6 +69,10 @@ if [[ $ACTIVATE_NOW =~ ^[YySs]$ ]]; then
     
     # 1. Configuração de Inicialização (X11)
     echo "#!/bin/bash" > "$ACTIVATE_SCRIPT"
+    # Adiciona as variáveis de ambiente ao script de ativação
+    echo "export GTK_IM_MODULE=xim" >> "$ACTIVATE_SCRIPT"
+    echo "export QT_IM_MODULE=xim" >> "$ACTIVATE_SCRIPT"
+    echo "export XCOMPOSEFILE=$HOME/.XCompose" >> "$ACTIVATE_SCRIPT"
     echo "setxkbmap -layout brus -variant basic -print | xkbcomp -I$HOME/.config/xkb - \$DISPLAY" >> "$ACTIVATE_SCRIPT"
     chmod +x "$ACTIVATE_SCRIPT"
 
@@ -128,18 +152,19 @@ EOF
             echo "1. Abra o arquivo de configuração:"
             echo "   nano ~/.config/hypr/hyprland.conf"
             echo ""
-            echo "2. Adicione ou edite o bloco 'input' com:"
+            echo "2. Adicione as variáveis de ambiente NO TOPO:"
+            echo "   env = GTK_IM_MODULE,xim"
+            echo "   env = QT_IM_MODULE,xim"
+            echo "   env = XCOMPOSEFILE,\$HOME/.XCompose"
+            echo ""
+            echo "3. Adicione ou edite o bloco 'input' com:"
             echo "   input {"
             echo "       kb_layout = brus"
-            echo "       # kb_variant =   # Deixe vazio"
+            echo "       # kb_variant =   # VAZIO"
             echo "       # ... suas outras configurações de input ..."
             echo "   }"
             echo ""
-            echo "3. Salve o arquivo (Ctrl+O, Enter, Ctrl+X)"
-            echo ""
-            echo "4. Recarregue a configuração:"
-            echo "   hyprctl reload"
-            echo "   # OU pressione: Super+Shift+C (se configurado)"
+            echo "4. Salve e faça Logout/Login"
             echo ""
         fi
         echo "───────────────────────────────────────────────────────────────────────────"
@@ -176,18 +201,8 @@ else
         echo "1. Abra o arquivo de configuração:"
         echo "   nano ~/.config/hypr/hyprland.conf"
         echo ""
-        echo "2. Adicione ou edite o bloco 'input' com:"
-        echo "   input {"
-        echo "       kb_layout = brus"
-        echo "       # kb_variant =   # Deixe vazio"
-        echo "       # ... suas outras configurações de input ..."
-        echo "   }"
-        echo ""
-        echo "3. Salve o arquivo (Ctrl+O, Enter, Ctrl+X)"
-        echo ""
-        echo "4. Recarregue a configuração:"
-        echo "   hyprctl reload"
-        echo "   # OU pressione: Super+Shift+C (se configurado)"
+        echo "2. Defina as variáveis env (xim) e input { kb_layout = brus }"
+        echo "   (Não esqueça de deixar kb_variant vazio)"
         echo ""
         echo "═══════════════════════════════════════════════════════════════════════════"
         echo ""
@@ -293,10 +308,9 @@ else
     
     if [ "$DETECTED_ENV" != "hyprland" ]; then
         echo "▸ HYPRLAND:"
-        echo "  Edite ~/.config/hypr/hyprland.conf e adicione no bloco 'input':"
-        echo "  kb_layout = brus"
-        echo "  # kb_variant =   # Deixe vazio"
-        echo "  Depois: hyprctl reload"
+        echo "  Edite ~/.config/hypr/hyprland.conf:"
+        echo "  1. Adicione envs: env = GTK_IM_MODULE,xim (e QT, XCOMPOSEFILE)"
+        echo "  2. Input: kb_layout = brus (kb_variant vazio)"
         echo ""
     fi
     
