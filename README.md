@@ -21,17 +21,21 @@
 
 ## 📖 Sobre
 
-O **BrUS** é um layout de teclado customizado que combina a eficiência do teclado **US (Estados Unidos)** com suporte completo para **caracteres acentuados do Português Brasileiro**. Perfeito para programadores que precisam de fácil acesso a símbolos de programação enquanto escrevem em português.
+O **BrUS** é um layout de teclado customizado que combina a eficiência do teclado **US (Estados Unidos)** com suporte completo para **caracteres acentuados do Português Brasileiro**. 
+
+### 🎯 O Diferencial
+
+O principal objetivo do BrUS é permitir **digitar acentos diretamente com uma única combinação de teclas** usando `AltGr` (Alt Direito), **sem precisar de teclas mortas**. Isso significa que você pode digitar `á`, `é`, `ç`, `ã` e outros caracteres acentuados de forma rápida e direta, ideal para programadores que precisam alternar entre código e texto em português.
 
 ### ✨ Características Principais
 
 | 🎯 Recurso | 📝 Descrição |
 |-----------|-------------|
+| **Acentos Diretos com AltGr** | Digite `á`, `é`, `ç`, `ã`, `õ` diretamente com `Alt Direito + tecla` - sem teclas mortas! |
 | **Base US Layout** | Mantém todos os símbolos de programação em posições familiares |
-| **Dead Keys** | Acesso rápido a acentos (^, `, ~) usando teclas mortas |
-| **Camada AltGr** | Caracteres especiais e acentuados com `Alt Direito` ou `Ctrl+Alt` |
 | **Camada Numérica** | Acesso rápido a números e símbolos usando `AltGr+Space` |
 | **Símbolos Internacionais** | Suporte a €, £, ¥, ©, ®, µ, ß e muito mais |
+| **Dead Keys (Opcional)** | Teclas mortas (^, `, ~) disponíveis como alternativa |
 
 ---
 
@@ -131,11 +135,11 @@ O layout base é idêntico ao US QWERTY padrão:
 
 ---
 
-## 🎨 Camada AltGr (Alt Direito ou Ctrl+Alt)
+## 🎨 Camada AltGr - Acentos Diretos (Alt Direito ou Ctrl+Alt)
 
 > ⚠️ **Nota:** Em teclados US, a tecla `AltGr` é a tecla **Alt direita** (Right Alt). Você também pode usar `Ctrl + Alt` como alternativa.
 
-A camada AltGr fornece acesso rápido a caracteres acentuados e símbolos especiais:
+A camada AltGr é o **recurso principal** do BrUS! Com ela você digita caracteres acentuados **diretamente**, sem precisar de teclas mortas:
 
 ```
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────────┐
@@ -149,7 +153,7 @@ A camada AltGr fornece acesso rápido a caracteres acentuados e símbolos especi
 └─────────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────────────┘
 ```
 
-### 📋 Tabela de Atalhos AltGr
+### 📋 Acentos Diretos com AltGr (Principal)
 
 | Atalho | Caractere | Descrição |
 |--------|-----------|-----------|
@@ -214,9 +218,11 @@ Alguns caracteres adicionais estão disponíveis com `Shift + AltGr`:
 
 ---
 
-## ☠️ Dead Keys (Teclas Mortas)
+## 📝 Dead Keys - Teclas Mortas (Alternativa)
 
-As teclas mortas permitem criar caracteres acentuados pressionando primeiro o acento e depois a vogal.
+> 💡 **Nota:** As teclas mortas são uma **opção secundária**. O método principal e recomendado é usar os acentos diretos com AltGr descritos acima.
+
+As teclas mortas permitem criar caracteres acentuados pressionando primeiro o acento e depois a vogal. Úteis para caracteres menos comuns não mapeados na camada AltGr.
 
 ### ^ Circunflexo (`Shift + 6`)
 
@@ -318,10 +324,13 @@ Uma característica especial do BrUS é a camada numérica ativada por `AltGr + 
 ```
 "Você está fazendo um ótimo trabalho!"
 
-Como digitar:
-- ê: AltGr + D  OU  ^ + e
+Como digitar (método principal - AltGr):
+- ê: AltGr + D
 - á: AltGr + A
 - ó: AltGr + O
+
+Alternativa com teclas mortas:
+- ê: ^ + e
 ```
 
 ### Programação com Símbolos
