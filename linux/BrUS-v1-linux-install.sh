@@ -110,8 +110,6 @@ EOF
         elif [[ "$XDG_CURRENT_DESKTOP" =~ "XFCE" ]]; then
             echo "Para XFCE Wayland, você também precisa configurar manualmente:"
             echo ""
-            echo "⚠️  Nota: Suporte a Wayland no XFCE ainda é experimental"
-            echo ""
             echo "1. Abra as Configurações:"
             echo "   Menu → Configurações → Teclado"
             echo ""
@@ -237,8 +235,6 @@ else
         if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
             echo "🖥️  XFCE WAYLAND (detectado)"
             echo "───────────────────────────────────────────────────────────────────────────"
-            echo "⚠️  Nota: Suporte a Wayland no XFCE ainda é experimental"
-            echo ""
             echo "OPÇÃO 1 - Configuração manual (necessário para Wayland):"
             echo ""
             echo "1. Abra as Configurações:"
