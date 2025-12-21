@@ -17,7 +17,7 @@ xkb_symbols "BrUS-v1" {
     };
 
     // --- Row E (Numbers) ---
-    key <TLDE> { [ dead_grave, dead_tilde, rightsinglequotemark, voidsymbol ] }; 
+    key <TLDE> { [ dead_grave, dead_tilde, rightsinglequotemark, voidsymbol ] };
     key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
     key <AE02> { [ 2, at, twosuperior, voidsymbol ] };
     key <AE03> { [ 3, numbersign, threesuperior, voidsymbol ] };
