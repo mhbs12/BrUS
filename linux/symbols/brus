@@ -1,23 +1,23 @@
 default partial alphanumeric_keys
 xkb_symbols "BrUS-v1" {
     name[Group1]= "Portuguese (Brazil, BrUS-v1)";
-    name[Group2]= "Layer Numérico (Hold AltGr+Space)";
+    name[Group2]= "Layer Numérico (AltGr+Space)";
 
     include "us(basic)"
-
-    // Define AltGr (Right Alt) como o seletor de nível 3 (Acentos)
     include "level3(ralt_switch)"
+
+    // AltGr (Level 3) setup
     key <RALT> { [ ISO_Level3_Shift ] };
 
-    // Camada de Acentos e Tecla de Troca de Grupo (Space)
+    // Space: Level 3 switches to Group 2 (Numeric Layer)
     key <SPCE> { 
         type[Group1]="FOUR_LEVEL", 
-        symbols[Group1]= [ space, space, Mode_switch, dead_greek ],
-        symbols[Group2]= [ space, space, space, space ]
+        symbols[Group1]= [ space, space, ISO_Next_Group, ISO_Next_Group ],
+        symbols[Group2]= [ space, space, ISO_Prev_Group, ISO_Prev_Group ]
     };
 
-    // Linha de Números e Acentos Mortos
-    key <TLDE> { [ dead_grave, dead_tilde, voidsymbol, dead_acute ] };
+    // --- Row E (Numbers) ---
+    key <TLDE> { [ dead_grave, dead_tilde, rightsinglequotemark, voidsymbol ] };
     key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
     key <AE02> { [ 2, at, twosuperior, voidsymbol ] };
     key <AE03> { [ 3, numbersign, threesuperior, voidsymbol ] };
@@ -28,8 +28,10 @@ xkb_symbols "BrUS-v1" {
     key <AE08> { [ 8, asterisk, threequarters, voidsymbol ] };
     key <AE09> { [ 9, parenleft, leftsinglequotemark, voidsymbol ] };
     key <AE10> { [ 0, parenright, rightsinglequotemark, voidsymbol ] };
+    key <AE11> { [ minus, underscore, yen, voidsymbol ] };
+    key <AE12> { [ equal, plus, multiply, division ] };
 
-    // Camada Letras (Nível 3 = Acentos / Grupo 2 = Números e Navegação)
+    // --- Row D (QWERTY) ---
     key <AD01> { [ q, Q, acircumflex, Adiaeresis ], [ Delete, Delete, Delete, Delete ] };
     key <AD02> { [ w, W, agrave, Aring ],          [ BackSpace, BackSpace, BackSpace, BackSpace ] };
     key <AD03> { [ e, E, eacute, Eacute ],         [ exclam, exclam, exclam, exclam ] };
@@ -40,7 +42,11 @@ xkb_symbols "BrUS-v1" {
     key <AD08> { [ i, I, iacute, Iacute ],         [ asciicircum, asciicircum, asciicircum, asciicircum ] };
     key <AD09> { [ o, O, oacute, Oacute ],         [ ampersand, ampersand, ampersand, ampersand ] };
     key <AD10> { [ p, P, otilde, Odiaeresis ],     [ asterisk, asterisk, asterisk, asterisk ] };
+    key <AD11> { [ bracketleft, braceleft, guillemotleft, voidsymbol ] };
+    key <AD12> { [ bracketright, braceright, guillemotright, voidsymbol ] };
+    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
 
+    // --- Row C (ASDF) ---
     key <AC01> { [ a, A, aacute, Aacute ],       [ 1, 1, 1, 1 ] };
     key <AC02> { [ s, S, atilde, section ],      [ 2, 2, 2, 2 ] };
     key <AC03> { [ d, D, ecircumflex, ETH ],     [ 3, 3, 3, 3 ] };
@@ -51,6 +57,17 @@ xkb_symbols "BrUS-v1" {
     key <AC08> { [ k, K, plus, voidsymbol ],     [ 8, 8, 8, 8 ] };
     key <AC09> { [ l, L, minus, Ooblique ],      [ 9, 9, 9, 9 ] };
     key <AC10> { [ semicolon, colon, ocircumflex, degree ], [ 0, 0, 0, 0 ] };
+    key <AC11> { [ apostrophe, quotedbl, paragraph, diaeresis ] };
 
+    // --- Row B (ZXCV) ---
+    key <AB01> { [ z, Z, ae, AE ] };
+    key <AB02> { [ x, X, asciitilde, voidsymbol ] };
     key <AB03> { [ c, C, ccedilla, cent ] };
+    key <AB04> { [ v, V, copyright, voidsymbol ] };
+    key <AB05> { [ b, B, ssharp, voidsymbol ] };
+    key <AB06> { [ n, N, ntilde, Ntilde ] };
+    key <AB07> { [ m, M, mu, voidsymbol ] };
+    key <AB08> { [ comma, less, eth, Ccedilla ] };
+    key <AB09> { [ period, greater, oslash, voidsymbol ] };
+    key <AB10> { [ slash, question, questiondown, voidsymbol ] };
 };
