@@ -106,6 +106,18 @@ Configurações → Hora e idioma → Idioma e região → Português (Brasil)
 
 ---
 
+## 🐧 Instalação no Linux
+
+### Instalação Automática
+
+Execute o seguinte comando no terminal:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/BrUS-v1-linux-install.sh)"
+```
+
+---
+
 ## ⌨️ Guia de Atalhos
 
 ### 🔤 Camada Base (Normal)
