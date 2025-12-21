@@ -1,0 +1,51 @@
+default partial alphanumeric_keys
+xkb_symbols "BrUS-v1" {
+    name[Group1]= "Portuguese (Brazil, BrUS-v1)";
+    name[Group2]= "Layer Numérico (Hold AltGr+Space)";
+
+    include "us(basic)"
+
+    key <SPCE> { 
+        type[Group1]="FOUR_LEVEL", 
+        symbols[Group1]= [ space, space, Mode_switch, dead_greek ],
+        symbols[Group2]= [ space, space, space, space ]
+    };
+
+    key <TLDE> { [ dead_grave, dead_tilde, voidsymbol, dead_acute ] };
+    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
+    key <AE02> { [ 2, at, twosuperior, voidsymbol ] };
+    key <AE03> { [ 3, numbersign, threesuperior, voidsymbol ] };
+    key <AE04> { [ 4, dollar, currency, sterling ] };
+    key <AE05> { [ 5, percent, euro, voidsymbol ] };
+    key <AE06> { [ 6, dead_circumflex, onequarter, voidsymbol ] };
+    key <AE07> { [ 7, ampersand, onehalf, voidsymbol ] };
+    key <AE08> { [ 8, asterisk, threequarters, voidsymbol ] };
+    key <AE09> { [ 9, parenleft, leftsinglequotemark, voidsymbol ] };
+    key <AE10> { [ 0, parenright, rightsinglequotemark, voidsymbol ] };
+    key <AE11> { [ minus, underscore, yen, voidsymbol ] };
+    key <AE12> { [ equal, plus, multiply, division ] };
+
+    key <AD01> { [ q, Q, acircumflex, Adiaeresis ], [ Delete, Delete, Delete, Delete ] };
+    key <AD02> { [ w, W, agrave, Aring ],          [ BackSpace, BackSpace, BackSpace, BackSpace ] };
+    key <AD03> { [ e, E, eacute, Eacute ],         [ exclam, exclam, exclam, exclam ] };
+    key <AD04> { [ r, R, registered, voidsymbol ], [ at, at, at, at ] };
+    key <AD05> { [ t, T, thorn, THORN ],           [ numbersign, numbersign, numbersign, numbersign ] };
+    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ], [ dollar, dollar, dollar, dollar ] };
+    key <AD07> { [ u, U, uacute, Uacute ],         [ percent, percent, percent, percent ] };
+    key <AD08> { [ i, I, iacute, iacute ],         [ asciicircum, asciicircum, asciicircum, asciicircum ] };
+    key <AD09> { [ o, O, oacute, Oacute ],         [ ampersand, ampersand, ampersand, ampersand ] };
+    key <AD10> { [ p, P, otilde, Odiaeresis ],     [ asterisk, asterisk, asterisk, asterisk ] };
+
+    key <AC01> { [ a, A, aacute, Aacute ],       [ 1, 1, 1, 1 ] };
+    key <AC02> { [ s, S, atilde, section ],      [ 2, 2, 2, 2 ] };
+    key <AC03> { [ d, D, ecircumflex, ETH ],     [ 3, 3, 3, 3 ] };
+    key <AC04> { [ f, F, parenleft, voidsymbol ],[ 4, 4, 4, 4 ] };
+    key <AC05> { [ g, G, parenright, voidsymbol ],[ 5, 5, 5, 5 ] };
+    key <AC06> { [ h, H, underscore, voidsymbol ],[ 6, 6, 6, 6 ] };
+    key <AC07> { [ j, J, equal, voidsymbol ],    [ 7, 7, 7, 7 ] };
+    key <AC08> { [ k, K, plus, voidsymbol ],     [ 8, 8, 8, 8 ] };
+    key <AC09> { [ l, L, minus, Ooblique ],      [ 9, 9, 9, 9 ] };
+    key <AC10> { [ semicolon, colon, ocircumflex, degree ], [ 0, 0, 0, 0 ] };
+
+    include "level3(ralt_switch)"
+};
