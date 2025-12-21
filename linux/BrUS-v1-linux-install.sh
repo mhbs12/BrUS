@@ -81,12 +81,206 @@ EOF
     
     echo ""
     echo "Sucesso! O layout BrUS-v1 foi instalado e ativado."
+    echo ""
+    
+    # Instruções adicionais baseadas no ambiente
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        echo "───────────────────────────────────────────────────────────────────────────"
+        echo "ℹ️  NOTA: Você está em uma sessão Wayland"
+        echo ""
+        
+        if [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$DESKTOP_SESSION" = "plasma" ]; then
+            echo "Para KDE Plasma Wayland, você também precisa configurar manualmente:"
+            echo "  Configurações do Sistema → Dispositivos de Entrada → Teclado → Layouts"
+            echo "  Adicione: Português (Brasil, BrUS-v1)"
+            echo ""
+        elif [[ "$XDG_CURRENT_DESKTOP" =~ "XFCE" ]]; then
+            echo "Para XFCE Wayland, você também precisa configurar manualmente:"
+            echo "  Menu → Configurações → Teclado → Layout"
+            echo "  Adicione: Português (Brasil, BrUS-v1)"
+            echo ""
+        elif [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] || [ -f "$HYPR_CONF" ]; then
+            echo "Para Hyprland, veja as instruções acima para editar hyprland.conf"
+            echo ""
+        fi
+        echo "───────────────────────────────────────────────────────────────────────────"
+    fi
 else
     echo ""
-    echo "Layout não ativado. Você pode ativar manualmente mais tarde:"
-    echo "  - Para X11: execute o script de ativação ou use as ferramentas do seu ambiente"
-    echo "  - Para Hyprland: adicione as configurações acima ao seu hyprland.conf"
-    echo "  - Para GNOME: use as configurações de teclado do sistema"
+    echo "Layout não ativado automaticamente."
+    echo ""
+    echo "═══════════════════════════════════════════════════════════════════════════"
+    echo "📖 INSTRUÇÕES DE CONFIGURAÇÃO MANUAL POR AMBIENTE"
+    echo "═══════════════════════════════════════════════════════════════════════════"
+    echo ""
+    
+    # Detecta o ambiente de desktop
+    DETECTED_ENV=""
+    if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] || [ -f "$HYPR_CONF" ]; then
+        DETECTED_ENV="hyprland"
+    elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$DESKTOP_SESSION" = "plasma" ]; then
+        DETECTED_ENV="kde"
+    elif [[ "$XDG_CURRENT_DESKTOP" =~ "XFCE" ]]; then
+        DETECTED_ENV="xfce"
+    elif [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ "$DESKTOP_SESSION" = "gnome" ]; then
+        DETECTED_ENV="gnome"
+    fi
+    
+    # Exibe instruções para o ambiente detectado primeiro
+    if [ "$DETECTED_ENV" = "hyprland" ]; then
+        echo "🖥️  HYPRLAND (detectado)"
+        echo "───────────────────────────────────────────────────────────────────────────"
+        echo "1. Abra o arquivo de configuração:"
+        echo "   nano ~/.config/hypr/hyprland.conf"
+        echo ""
+        echo "2. Adicione ou edite o bloco 'input' com:"
+        echo "   input {"
+        echo "       kb_layout = brus"
+        echo "       kb_variant = BrUS-v1"
+        echo "       # ... suas outras configurações de input ..."
+        echo "   }"
+        echo ""
+        echo "3. Salve o arquivo (Ctrl+O, Enter, Ctrl+X)"
+        echo ""
+        echo "4. Recarregue a configuração:"
+        echo "   hyprctl reload"
+        echo "   # OU pressione: Super+Shift+C (se configurado)"
+        echo ""
+        echo "═══════════════════════════════════════════════════════════════════════════"
+        echo ""
+    elif [ "$DETECTED_ENV" = "kde" ]; then
+        if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+            echo "🖥️  KDE PLASMA WAYLAND (detectado)"
+            echo "───────────────────────────────────────────────────────────────────────────"
+            echo "1. Abra as Configurações do Sistema:"
+            echo "   Menu → Configurações do Sistema"
+            echo "   # OU execute: systemsettings5"
+            echo ""
+            echo "2. Navegue até:"
+            echo "   Dispositivos de Entrada → Teclado → Layouts"
+            echo ""
+            echo "3. Clique em 'Adicionar' e procure por:"
+            echo "   Português (Brasil, BrUS-v1)"
+            echo "   # OU busque por: brus"
+            echo ""
+            echo "4. Adicione o layout e mova para o topo se quiser usá-lo como padrão"
+            echo ""
+            echo "5. Clique em 'Aplicar'"
+            echo ""
+            echo "═══════════════════════════════════════════════════════════════════════════"
+            echo ""
+        else
+            echo "🖥️  KDE PLASMA X11 (detectado - autostart configurado)"
+            echo "───────────────────────────────────────────────────────────────────────────"
+            echo "O layout será ativado automaticamente no próximo login."
+            echo ""
+            echo "Para ativar agora sem reiniciar, execute:"
+            echo "  bash ~/.brus-activate.sh"
+            echo ""
+            echo "═══════════════════════════════════════════════════════════════════════════"
+            echo ""
+        fi
+    elif [ "$DETECTED_ENV" = "xfce" ]; then
+        if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+            echo "🖥️  XFCE WAYLAND (detectado)"
+            echo "───────────────────────────────────────────────────────────────────────────"
+            echo "⚠️  Nota: Suporte a Wayland no XFCE ainda é experimental"
+            echo ""
+            echo "1. Abra as Configurações:"
+            echo "   Menu → Configurações → Teclado"
+            echo ""
+            echo "2. Vá para a aba 'Layout'"
+            echo ""
+            echo "3. Desmarque 'Usar padrões do sistema'"
+            echo ""
+            echo "4. Clique em 'Adicionar' e procure por:"
+            echo "   Português (Brasil, BrUS-v1)"
+            echo ""
+            echo "5. Adicione o layout e clique em 'Fechar'"
+            echo ""
+            echo "═══════════════════════════════════════════════════════════════════════════"
+            echo ""
+        else
+            echo "🖥️  XFCE X11 (detectado - autostart configurado)"
+            echo "───────────────────────────────────────────────────────────────────────────"
+            echo "O layout será ativado automaticamente no próximo login."
+            echo ""
+            echo "Para ativar agora sem reiniciar, execute:"
+            echo "  bash ~/.brus-activate.sh"
+            echo ""
+            echo "═══════════════════════════════════════════════────════════════════════════"
+            echo ""
+        fi
+    elif [ "$DETECTED_ENV" = "gnome" ]; then
+        echo "🖥️  GNOME (detectado - já configurado via gsettings)"
+        echo "───────────────────────────────────────────────────────────────────────────"
+        echo "Se preferir configurar manualmente pela interface:"
+        echo ""
+        echo "1. Abra as Configurações:"
+        echo "   Menu → Configurações"
+        echo ""
+        echo "2. Vá para:"
+        echo "   Teclado → Fontes de Entrada"
+        echo ""
+        echo "3. Clique em '+' para adicionar"
+        echo ""
+        echo "4. Procure por 'Português (Brasil, BrUS-v1)'"
+        echo ""
+        echo "5. Adicione e defina como padrão se desejar"
+        echo ""
+        echo "═══════════════════════════════════════════════════════════════════════════"
+        echo ""
+    fi
+    
+    # Exibe instruções para outros ambientes comuns
+    echo "📋 OUTROS AMBIENTES:"
+    echo ""
+    
+    if [ "$DETECTED_ENV" != "hyprland" ]; then
+        echo "▸ HYPRLAND:"
+        echo "  Edite ~/.config/hypr/hyprland.conf e adicione no bloco 'input':"
+        echo "  kb_layout = brus"
+        echo "  kb_variant = BrUS-v1"
+        echo ""
+    fi
+    
+    if [ "$DETECTED_ENV" != "kde" ]; then
+        echo "▸ KDE PLASMA:"
+        echo "  Configurações do Sistema → Dispositivos de Entrada → Teclado → Layouts"
+        echo "  Adicione: Português (Brasil, BrUS-v1)"
+        echo ""
+    fi
+    
+    if [ "$DETECTED_ENV" != "xfce" ]; then
+        echo "▸ XFCE:"
+        echo "  Menu → Configurações → Teclado → Layout"
+        echo "  Adicione: Português (Brasil, BrUS-v1)"
+        echo ""
+    fi
+    
+    if [ "$DETECTED_ENV" != "gnome" ]; then
+        echo "▸ GNOME:"
+        echo "  Configurações → Teclado → Fontes de Entrada"
+        echo "  Adicione: Português (Brasil, BrUS-v1)"
+        echo ""
+    fi
+    
+    echo "▸ SWAY:"
+    echo "  Edite ~/.config/sway/config e adicione:"
+    echo "  input type:keyboard {"
+    echo "      xkb_layout brus"
+    echo "      xkb_variant BrUS-v1"
+    echo "  }"
+    echo ""
+    
+    echo "▸ i3/Openbox/Outros (X11):"
+    echo "  Execute o script de ativação:"
+    echo "  bash ~/.brus-activate.sh"
+    echo "  E adicione às aplicações de inicialização do seu ambiente"
+    echo ""
+    
+    echo "═══════════════════════════════════════════════════════════════════════════"
     echo ""
     echo "Sucesso! O layout BrUS-v1 foi instalado."
+    echo "O arquivo de símbolos está em: ~/.config/xkb/symbols/brus"
 fi
