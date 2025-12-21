@@ -1,356 +1,75 @@
-#!/bin/bash
+default partial alphanumeric_keys
+xkb_symbols "basic" {
 
-REPO_RAW="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/symbols/brus"
-REPO_XCOMPOSE="https://raw.githubusercontent.com/mhbs12/BrUS/main/linux/.XCompose"
-DEST_DIR="$HOME/.config/xkb/symbols"
-DEST_COMPOSE="$HOME/.XCompose"
-AUTOSTART_DIR="$HOME/.config/autostart"
-HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
-ACTIVATE_SCRIPT="$HOME/.brus-activate.sh"
+    name[Group1]= "Portuguese (Brazil) - BrUS MHBS12";
+    
+    // Carrega o layout US base
+    include "us(basic)"
+    
+    // --- CORREÇÃO DO ALTGR ---
+    // Força o Alt Direito a funcionar como seletor de 3º nível (AltGr)
+    key <RALT> { type[Group1]="ONE_LEVEL", [ ISO_Level3_Shift ] };
+    modifier_map Mod5 { ISO_Level3_Shift };
 
-echo "Instalando BrUS-v4 (com XCompose)..."
+    // --- Definindo o comportamento das teclas ---
 
-# Cria o diretório de símbolos e baixa o arquivo
-mkdir -p "$DEST_DIR"
+    // Fileira dos Números
+    // AltGr+Grave (TLDE) usa dead_ogonek como gatilho para acentos graves
+    key <TLDE> { [ grave, asciitilde, dead_ogonek, dead_ogonek ] };
+    key <AE01> { [ 1, exclam, exclamdown, onesuperior ] };
+    key <AE02> { [ 2, at, NoSymbol, twosuperior ] };
+    key <AE03> { [ 3, numbersign, NoSymbol, threesuperior ] };
+    key <AE04> { [ 4, dollar, currency, sterling ] };
+    key <AE05> { [ 5, percent, EuroSign, NoSymbol ] };
+    key <AE06> { [ 6, dead_circumflex, onequarter, NoSymbol ] };
+    key <AE07> { [ 7, ampersand, onehalf, NoSymbol ] };
+    key <AE08> { [ 8, asterisk, threequarters, NoSymbol ] };
+    key <AE09> { [ 9, parenleft, leftsinglequotemark, NoSymbol ] };
+    key <AE10> { [ 0, parenright, rightsinglequotemark, NoSymbol ] };
+    key <AE11> { [ minus, underscore, yen, NoSymbol ] };
+    key <AE12> { [ equal, plus, multiply, division ] };
 
-# Baixa o mapa de teclas do repositório
-if curl -sL "$REPO_RAW" -o "$DEST_DIR/brus"; then
-    echo "✓ Arquivo de símbolos baixado para $DEST_DIR/brus"
-else
-    echo "✗ Erro ao baixar o arquivo de símbolos"
-    exit 1
-fi
+    // Fileira QWERTY
+    key <AD01> { [ q, Q, acircumflex, Adiaeresis ] };
+    key <AD02> { [ w, W, agrave, Aring ] };
+    key <AD03> { [ e, E, eacute, Eacute ] };
+    key <AD04> { [ r, R, registered, NoSymbol ] };
+    key <AD05> { [ t, T, thorn, THORN ] };
+    key <AD06> { [ y, Y, udiaeresis, Udiaeresis ] };
+    key <AD07> { [ u, U, uacute, Uacute ] };
+    key <AD08> { [ i, I, iacute, Iacute ] };
+    key <AD09> { [ o, O, oacute, Oacute ] };
+    key <AD10> { [ p, P, otilde, Odiaeresis ] };
+    key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] };
+    key <AD12> { [ bracketright, braceright, NoSymbol, guillemotright ] };
+    key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
 
-# Baixa o .XCompose (Necessário para o layout funcionar)
-# Faz backup se já existir e não for o nosso
-if [ -f "$DEST_COMPOSE" ] && ! grep -q "BrUS" "$DEST_COMPOSE"; then
-    mv "$DEST_COMPOSE" "$DEST_COMPOSE.old.$(date +%s)"
-fi
+    // Fileira ASDFG
+    key <AC01> { [ a, A, aacute, Aacute ] };
+    key <AC02> { [ s, S, atilde, section ] };
+    key <AC03> { [ d, D, ecircumflex, ETH ] };
+    key <AC04> { [ f, F, parenleft, NoSymbol ] };
+    key <AC05> { [ g, G, parenright, NoSymbol ] };
+    key <AC06> { [ h, H, underscore, NoSymbol ] };
+    key <AC07> { [ j, J, equal, NoSymbol ] };
+    key <AC08> { [ k, K, plus, NoSymbol ] };
+    key <AC09> { [ l, L, minus, Ooblique ] };
+    key <AC10> { [ semicolon, colon, ocircumflex, degree ] };
+    key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };
 
-if curl -sL "$REPO_XCOMPOSE" -o "$DEST_COMPOSE"; then
-    echo "✓ Arquivo .XCompose baixado para $DEST_COMPOSE"
-else
-    echo "⚠ Erro ao baixar .XCompose"
-fi
+    // Fileira ZXCVB
+    key <AB01> { [ z, Z, ae, AE ] };
+    key <AB02> { [ x, X, asciitilde, NoSymbol ] };
+    key <AB03> { [ c, C, ccedilla, cent ] };
+    key <AB04> { [ v, V, copyright, NoSymbol ] };
+    key <AB05> { [ b, B, ssharp, NoSymbol ] };
+    key <AB06> { [ n, N, ntilde, Ntilde ] };
+    key <AB07> { [ m, M, mu, NoSymbol ] };
+    key <AB08> { [ comma, less, eth, Ccedilla ] };
+    key <AB09> { [ period, greater, oslash, NoSymbol ] };
+    key <AB10> { [ slash, question, questiondown, NoSymbol ] };
 
-echo ""
-echo "---"
-echo "Instalação dos arquivos concluída!"
-echo ""
-
-# Instruções para Hyprland
-if [ -f "$HYPR_CONF" ]; then
-    echo "📝 Para Hyprland, adicione ou edite o seguinte no seu ~/.config/hypr/hyprland.conf:"
-    echo ""
-    echo "# 1. Variáveis de Ambiente (Adicione no TOPO do arquivo)"
-    echo "env = GTK_IM_MODULE,xim"
-    echo "env = QT_IM_MODULE,xim"
-    echo "env = XCOMPOSEFILE,\$HOME/.XCompose"
-    echo ""
-    echo "# 2. Configuração de Input"
-    echo "input {"
-    echo "    kb_layout = brus"
-    echo "    # kb_variant =    # Deixe vazio ou comentado"
-    echo "    # ... suas outras configurações de input ..."
-    echo "}"
-    echo ""
-    echo "Depois, faça LOGOUT e LOGIN para aplicar as variáveis de ambiente."
-    echo ""
-fi
-
-# Pergunta se o usuário deseja ativar o layout agora
-echo "---"
-read -p "Deseja ativar o layout agora? (s/N): " -n 1 -r ACTIVATE_NOW
-echo ""
-
-if [[ $ACTIVATE_NOW =~ ^[YySs]$ ]]; then
-    # Cria o diretório de autostart
-    mkdir -p "$AUTOSTART_DIR"
-    
-    # 1. Configuração de Inicialização (X11)
-    echo "#!/bin/bash" > "$ACTIVATE_SCRIPT"
-    # Adiciona as variáveis de ambiente ao script de ativação
-    echo "export GTK_IM_MODULE=xim" >> "$ACTIVATE_SCRIPT"
-    echo "export QT_IM_MODULE=xim" >> "$ACTIVATE_SCRIPT"
-    echo "export XCOMPOSEFILE=$HOME/.XCompose" >> "$ACTIVATE_SCRIPT"
-    echo "setxkbmap -layout brus -variant basic -print | xkbcomp -I$HOME/.config/xkb - \$DISPLAY" >> "$ACTIVATE_SCRIPT"
-    chmod +x "$ACTIVATE_SCRIPT"
-
-    cat << EOF > "$AUTOSTART_DIR/brus-layout.desktop"
-[Desktop Entry]
-Type=Application
-Exec=$ACTIVATE_SCRIPT
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name=BrUS Keyboard Layout
-Comment=Aplica o layout BrUS-v1 no login
-EOF
-    echo "✓ Autostart configurado em $AUTOSTART_DIR/brus-layout.desktop"
-
-    # 2. Configuração para GNOME (Wayland/X11)
-    if command -v gsettings >/dev/null 2>&1; then
-        gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'brus+basic')]"
-        echo "✓ Configuração aplicada via gsettings (GNOME)"
-    fi
-
-    # 3. Aplicação imediata para a sessão atual (X11)
-    if [ -n "$DISPLAY" ]; then
-        if bash "$ACTIVATE_SCRIPT" 2>/dev/null; then
-            echo "✓ Layout BrUS-v1 ativado para a sessão atual (X11)"
-        else
-            echo "⚠ Não foi possível ativar o layout imediatamente (pode não estar em X11)"
-        fi
-    fi
-    
-    echo ""
-    echo "Sucesso! O layout BrUS-v1 foi instalado e ativado."
-    echo ""
-    
-    # Instruções adicionais baseadas no ambiente
-    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-        echo "───────────────────────────────────────────────────────────────────────────"
-        echo "ℹ️  NOTA: Você está em uma sessão Wayland"
-        echo ""
-        
-        if [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$DESKTOP_SESSION" = "plasma" ]; then
-            echo "Para KDE Plasma Wayland, você também precisa configurar manualmente:"
-            echo ""
-            echo "1. Abra as Configurações do Sistema:"
-            echo "   Menu → Configurações do Sistema"
-            echo "   # OU execute: systemsettings5"
-            echo ""
-            echo "2. Navegue até:"
-            echo "   Dispositivos de Entrada → Teclado → Layouts"
-            echo ""
-            echo "3. Clique em 'Adicionar' e procure por:"
-            echo "   Português (Brasil, BrUS-v1)"
-            echo "   # OU busque por: brus"
-            echo ""
-            echo "4. Adicione o layout e mova para o topo se quiser usá-lo como padrão"
-            echo ""
-            echo "5. Clique em 'Aplicar'"
-            echo ""
-        elif [[ "$XDG_CURRENT_DESKTOP" =~ "XFCE" ]]; then
-            echo "Para XFCE Wayland, você também precisa configurar manualmente:"
-            echo ""
-            echo "1. Abra as Configurações:"
-            echo "   Menu → Configurações → Teclado"
-            echo ""
-            echo "2. Vá para a aba 'Layout'"
-            echo ""
-            echo "3. Desmarque 'Usar padrões do sistema'"
-            echo ""
-            echo "4. Clique em 'Adicionar' e procure por:"
-            echo "   Português (Brasil, BrUS-v1)"
-            echo ""
-            echo "5. Adicione o layout e clique em 'Fechar'"
-            echo ""
-        elif [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] || [ -f "$HYPR_CONF" ]; then
-            echo "Para Hyprland, você precisa configurar manualmente:"
-            echo ""
-            echo "1. Abra o arquivo de configuração:"
-            echo "   nano ~/.config/hypr/hyprland.conf"
-            echo ""
-            echo "2. Adicione as variáveis de ambiente NO TOPO:"
-            echo "   env = GTK_IM_MODULE,xim"
-            echo "   env = QT_IM_MODULE,xim"
-            echo "   env = XCOMPOSEFILE,\$HOME/.XCompose"
-            echo ""
-            echo "3. Adicione ou edite o bloco 'input' com:"
-            echo "   input {"
-            echo "       kb_layout = brus"
-            echo "       # kb_variant =   # VAZIO"
-            echo "       # ... suas outras configurações de input ..."
-            echo "   }"
-            echo ""
-            echo "4. Salve e faça Logout/Login"
-            echo ""
-        fi
-        echo "───────────────────────────────────────────────────────────────────────────"
-    fi
-else
-    echo ""
-    echo "Layout não ativado automaticamente."
-    echo ""
-    echo "═══════════════════════════════════════════════════════════════════════════"
-    echo "📖 COMO ATIVAR O LAYOUT POSTERIORMENTE"
-    echo "═══════════════════════════════════════════════════════════════════════════"
-    echo ""
-    echo "Você tem duas opções para ativar o layout BrUS-v1:"
-    echo ""
-    
-    # Detecta o ambiente de desktop
-    DETECTED_ENV=""
-    if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] || [ -f "$HYPR_CONF" ]; then
-        DETECTED_ENV="hyprland"
-    elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$DESKTOP_SESSION" = "plasma" ]; then
-        DETECTED_ENV="kde"
-    elif [[ "$XDG_CURRENT_DESKTOP" =~ "XFCE" ]]; then
-        DETECTED_ENV="xfce"
-    elif [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ "$DESKTOP_SESSION" = "gnome" ]; then
-        DETECTED_ENV="gnome"
-    fi
-    
-    # Exibe instruções para o ambiente detectado primeiro
-    if [ "$DETECTED_ENV" = "hyprland" ]; then
-        echo "🖥️  HYPRLAND (detectado)"
-        echo "───────────────────────────────────────────────────────────────────────────"
-        echo "OPÇÃO 1 - Configuração manual (recomendado para Hyprland):"
-        echo ""
-        echo "1. Abra o arquivo de configuração:"
-        echo "   nano ~/.config/hypr/hyprland.conf"
-        echo ""
-        echo "2. Defina as variáveis env (xim) e input { kb_layout = brus }"
-        echo "   (Não esqueça de deixar kb_variant vazio)"
-        echo ""
-        echo "═══════════════════════════════════════════════════════════════════════════"
-        echo ""
-    elif [ "$DETECTED_ENV" = "kde" ]; then
-        if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-            echo "🖥️  KDE PLASMA WAYLAND (detectado)"
-            echo "───────────────────────────────────────────────────────────────────────────"
-            echo "OPÇÃO 1 - Configuração manual (necessário para Wayland):"
-            echo ""
-            echo "1. Abra as Configurações do Sistema:"
-            echo "   Menu → Configurações do Sistema"
-            echo "   # OU execute: systemsettings5"
-            echo ""
-            echo "2. Navegue até:"
-            echo "   Dispositivos de Entrada → Teclado → Layouts"
-            echo ""
-            echo "3. Clique em 'Adicionar' e procure por:"
-            echo "   Português (Brasil, BrUS-v1)"
-            echo "   # OU busque por: brus"
-            echo ""
-            echo "4. Adicione o layout e mova para o topo se quiser usá-lo como padrão"
-            echo ""
-            echo "5. Clique em 'Aplicar'"
-            echo ""
-            echo "═══════════════════════════════════════════════════════════════════════════"
-            echo ""
-        else
-            echo "🖥️  KDE PLASMA X11 (detectado)"
-            echo "───────────────────────────────────────────────────────────────────────────"
-            echo "OPÇÃO 1 - Ativação automática via script (recomendado):"
-            echo "  Execute novamente este instalador:"
-            echo "  bash BrUS-v1-linux-install.sh"
-            echo "  E escolha 's' quando perguntado se deseja ativar"
-            echo "  (Isso criará autostart e ativará para a sessão atual)"
-            echo ""
-            echo "OPÇÃO 2 - Configuração manual via GUI:"
-            echo "  Menu → Configurações do Sistema"
-            echo "  Dispositivos de Entrada → Teclado → Layouts"
-            echo "  Adicione: Português (Brasil, BrUS-v1)"
-            echo ""
-            echo "═══════════════════════════════════════════════════════════════════════════"
-            echo ""
-        fi
-    elif [ "$DETECTED_ENV" = "xfce" ]; then
-        if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-            echo "🖥️  XFCE WAYLAND (detectado)"
-            echo "───────────────────────────────────────────────────────────────────────────"
-            echo "OPÇÃO 1 - Configuração manual (necessário para Wayland):"
-            echo ""
-            echo "1. Abra as Configurações:"
-            echo "   Menu → Configurações → Teclado"
-            echo ""
-            echo "2. Vá para a aba 'Layout'"
-            echo ""
-            echo "3. Desmarque 'Usar padrões do sistema'"
-            echo ""
-            echo "4. Clique em 'Adicionar' e procure por:"
-            echo "   Português (Brasil, BrUS-v1)"
-            echo ""
-            echo "5. Adicione o layout e clique em 'Fechar'"
-            echo ""
-            echo "═══════════════════════════════════════════════════════════════════════════"
-            echo ""
-        else
-            echo "🖥️  XFCE X11 (detectado)"
-            echo "───────────────────────────────────────────────────────────────────────────"
-            echo "OPÇÃO 1 - Ativação automática via script (recomendado):"
-            echo "  Execute novamente este instalador:"
-            echo "  bash BrUS-v1-linux-install.sh"
-            echo "  E escolha 's' quando perguntado se deseja ativar"
-            echo "  (Isso criará autostart e ativará para a sessão atual)"
-            echo ""
-            echo "OPÇÃO 2 - Configuração manual via GUI:"
-            echo "  Menu → Configurações → Teclado → Layout"
-            echo "  Adicione: Português (Brasil, BrUS-v1)"
-            echo ""
-            echo "═══════════════════════════════════════════════════════════════════════════"
-            echo ""
-        fi
-    elif [ "$DETECTED_ENV" = "gnome" ]; then
-        echo "🖥️  GNOME (detectado)"
-        echo "───────────────────────────────────────────────────────────────────────────"
-        echo "OPÇÃO 1 - Ativação automática via script (recomendado):"
-        echo "  Execute novamente este instalador:"
-        echo "  bash BrUS-v1-linux-install.sh"
-        echo "  E escolha 's' quando perguntado se deseja ativar"
-        echo "  (Isso configurará automaticamente via gsettings)"
-        echo ""
-        echo "OPÇÃO 2 - Configuração manual via GUI:"
-        echo "  1. Abra as Configurações: Menu → Configurações"
-        echo "  2. Vá para: Teclado → Fontes de Entrada"
-        echo "  3. Clique em '+' para adicionar"
-        echo "  4. Procure por 'Português (Brasil, BrUS-v1)'"
-        echo "  5. Adicione e defina como padrão se desejar"
-        echo ""
-        echo "═══════════════════════════════════════════════════════════════════════════"
-        echo ""
-    fi
-    
-    # Exibe instruções para outros ambientes comuns
-    echo "📋 OUTROS AMBIENTES COMUNS:"
-    echo ""
-    
-    if [ "$DETECTED_ENV" != "hyprland" ]; then
-        echo "▸ HYPRLAND:"
-        echo "  Edite ~/.config/hypr/hyprland.conf:"
-        echo "  1. Adicione envs: env = GTK_IM_MODULE,xim (e QT, XCOMPOSEFILE)"
-        echo "  2. Input: kb_layout = brus (kb_variant vazio)"
-        echo ""
-    fi
-    
-    if [ "$DETECTED_ENV" != "kde" ]; then
-        echo "▸ KDE PLASMA:"
-        echo "  Configurações do Sistema → Dispositivos de Entrada → Teclado → Layouts"
-        echo "  Adicione: Português (Brasil, BrUS-v1)"
-        echo ""
-    fi
-    
-    if [ "$DETECTED_ENV" != "xfce" ]; then
-        echo "▸ XFCE:"
-        echo "  Menu → Configurações → Teclado → Layout"
-        echo "  Adicione: Português (Brasil, BrUS-v1)"
-        echo ""
-    fi
-    
-    if [ "$DETECTED_ENV" != "gnome" ]; then
-        echo "▸ GNOME:"
-        echo "  Execute o instalador e escolha 's' (configura via gsettings)"
-        echo "  OU: Configurações → Teclado → Fontes de Entrada"
-        echo ""
-    fi
-    
-    echo "▸ SWAY:"
-    echo "  Edite ~/.config/sway/config e adicione:"
-    echo "  input type:keyboard {"
-    echo "      xkb_layout brus"
-    echo "      xkb_variant basic"
-    echo "  }"
-    echo "  Depois: swaymsg reload"
-    echo ""
-    
-    echo "▸ i3/Openbox/Outros (X11):"
-    echo "  Execute o instalador e escolha 's' (cria script de ativação)"
-    echo "  OU configure manualmente nas preferências do seu ambiente"
-    echo ""
-    
-    echo "═══════════════════════════════════════════════════════════════════════════"
-    echo ""
-    echo "Sucesso! O layout BrUS-v1 foi instalado."
-    echo "O arquivo de símbolos está em: ~/.config/xkb/symbols/brus"
-fi
+    // Barra de Espaço
+    // AltGr+Espaço ativa o dead_horn (usado no XCompose)
+    key <SPCE> { [ space, space, dead_horn, space ] };
+};
