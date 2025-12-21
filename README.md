@@ -13,7 +13,7 @@
 
 <img src="https://raw.githubusercontent.com/mhbs12/BrUS/main/assets/keyboard-preview.png" alt="BrUS Keyboard Preview" width="800">
 
-*Layout de teclado customizado para programadores brasileiros*
+*Layout ideal para teclados 60% no padrão US - programe, escreva em português e inglês sem mover as mãos*
 
 </div>
 
@@ -21,21 +21,28 @@
 
 ## 📖 Sobre
 
-O **BrUS** é um layout de teclado customizado que combina a eficiência do teclado **US (Estados Unidos)** com suporte completo para **caracteres acentuados do Português Brasileiro**. 
+O **BrUS** é um layout de teclado customizado, focado em usuários de **teclados 60% no padrão US** que precisam escrever em **Português Brasileiro**, **Inglês** e **programar** de forma eficiente. Combina a praticidade do layout US com acesso direto a caracteres acentuados.
 
 ### 🎯 O Diferencial
 
-O principal objetivo do BrUS é permitir **digitar acentos diretamente com uma única combinação de teclas** usando `AltGr` (Alt Direito), **sem precisar de teclas mortas**. Isso significa que você pode digitar `á`, `é`, `ç`, `ã` e outros caracteres acentuados de forma rápida e direta, ideal para programadores que precisam alternar entre código e texto em português.
+| ✅ Vantagem | 📝 Descrição |
+|------------|-------------|
+| **Acentos Diretos** | Digite `á`, `é`, `ç`, `ã`, `õ` diretamente com `AltGr + tecla` - **sem teclas mortas!** |
+| **`'` e `"` NÃO são dead keys** | Diferente do US International, aspas simples e duplas funcionam normalmente - essencial para programação! |
+| **Símbolos na Home Row** | Acesse `+ - = _ ( ) ~` sem mover as mãos da posição inicial com `AltGr + F/G/H/J/K/L/X` |
+| **Camada Numérica** | Números na home row com `AltGr+Space` → perfeito para teclados 60% sem numpad |
+| **ESC e Backspace acessíveis** | `AltGr+Space → Q` para DEL, `AltGr+Space → W` para Backspace |
 
 ### ✨ Características Principais
 
 | 🎯 Recurso | 📝 Descrição |
 |-----------|-------------|
-| **Acentos Diretos com AltGr** | Digite `á`, `é`, `ç`, `ã`, `õ` diretamente com `Alt Direito + tecla` - sem teclas mortas! |
-| **Base US Layout** | Mantém todos os símbolos de programação em posições familiares |
-| **Camada Numérica** | Acesso rápido a números e símbolos usando `AltGr+Space` |
+| **Focado em 60%** | Ideal para teclados compactos no padrão US ANSI |
+| **Trilíngue** | Programe + escreva em PT-BR + escreva em inglês sem trocar de layout |
+| **Acentos Diretos com AltGr** | Digite `á`, `é`, `ç`, `ã`, `õ` diretamente com `Alt Direito + tecla` |
+| **Aspas Normais** | `'` e `"` funcionam como teclas normais (não são dead keys como no US International) |
 | **Símbolos Internacionais** | Suporte a €, £, ¥, ©, ®, µ, ß e muito mais |
-| **Dead Keys (Opcional)** | Teclas mortas (^, `, ~) disponíveis como alternativa |
+| **Dead Keys (Opcional)** | Teclas mortas (^, `, ~) disponíveis apenas como alternativa |
 
 ---
 
@@ -192,7 +199,9 @@ A camada AltGr é o **recurso principal** do BrUS! Com ela você digita caracter
 | `AltGr + [` | « | Aspas angulares esquerda |
 | `AltGr + ]` | » | Aspas angulares direita |
 
-### ⌨️ Atalhos de Programação com AltGr
+### ⌨️ Símbolos de Programação na Home Row
+
+**Programe sem mover as mãos!** Acesse os símbolos mais usados diretamente na home row:
 
 | Atalho | Caractere | Uso |
 |--------|-----------|-----|
@@ -202,6 +211,7 @@ A camada AltGr é o **recurso principal** do BrUS! Com ela você digita caracter
 | `AltGr + J` | = | Igual |
 | `AltGr + K` | + | Mais |
 | `AltGr + L` | - | Menos |
+| `AltGr + X` | ~ | Til |
 
 ### 🔣 Camada Shift + AltGr
 
@@ -351,10 +361,12 @@ print("© 2025 Empresa®")  # © com AltGr+V, ® com AltGr+R
 |---------|------|-------|------------------|
 | Base US | ✅ | ❌ | ✅ |
 | Acentos diretos | ✅ | ✅ | ❌ |
+| `'` e `"` normais (não dead keys) | ✅ | ✅ | ❌ |
 | Dead keys | ✅ | ✅ | ✅ |
 | Camada numérica | ✅ | ❌ | ❌ |
+| Símbolos na home row | ✅ | ❌ | ❌ |
 | Cedilha fácil | ✅ | ✅ | ❌ |
-| Símbolos de programação | ✅ | ❌ | ✅ |
+| Ideal para 60% | ✅ | ❌ | ✅ |
 
 ---
 
