@@ -42,7 +42,7 @@ fi
 
 # Pergunta se o usuário deseja ativar o layout agora
 echo "---"
-read -p "Deseja ativar o layout agora? (y/N): " -n 1 -r ACTIVATE_NOW
+read -p "Deseja ativar o layout agora? (s/N): " -n 1 -r ACTIVATE_NOW
 echo ""
 
 if [[ $ACTIVATE_NOW =~ ^[YySs]$ ]]; then
@@ -74,8 +74,7 @@ EOF
 
     # 3. Aplicação imediata para a sessão atual (X11)
     if [ -n "$DISPLAY" ]; then
-        sh "$ACTIVATE_SCRIPT" 2>/dev/null
-        if [ $? -eq 0 ]; then
+        if sh "$ACTIVATE_SCRIPT" 2>/dev/null; then
             echo "✓ Layout BrUS-v1 ativado para a sessão atual (X11)"
         else
             echo "⚠ Não foi possível ativar o layout imediatamente (pode não estar em X11)"
