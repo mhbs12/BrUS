@@ -6,7 +6,7 @@
 
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/mhbs12/BrUS/releases)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/mhbs12/BrUS)
-[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/mhbs12/BrUS)
+[![Version](https://img.shields.io/badge/Version-2.0.0-brightgreen?style=for-the-badge)](https://github.com/mhbs12/BrUS)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/mhbs12)
 
@@ -235,9 +235,14 @@ Alguns caracteres adicionais estão disponíveis com `Shift + AltGr`:
 | `Shift + AltGr + 1` | ¹ | Superscript 1 |
 | `Shift + AltGr + 4` | £ | Libra |
 | `Shift + AltGr + =` | ÷ | Divisão |
-| `Shift + AltGr + ;` | ° | Grau |
+| `Shift + AltGr + F` | $ | Cifrão |
+| `Shift + AltGr + G` | & | E comercial |
+| `Shift + AltGr + J` | * | Asterisco |
+| `Shift + AltGr + K` | ^ | Circunflexo |
+| `Shift + AltGr + L` | Ø | O com traço maiúsculo |
+| `Shift + AltGr + ;` | Ô | O com circunflexo maiúsculo |
 | `Shift + AltGr + '` | ¨ | Trema |
-| `Shift + AltGr + ,` | Ç | C cedilha maiúsculo |
+| `Shift + AltGr + ,` | ¢ | Centavo |
 
 ---
 
