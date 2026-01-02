@@ -5,9 +5,7 @@ xkb_symbols "basic" {
     
     // Carrega o layout US base
     include "us(basic)"
-    
-    // --- CORREÇÃO DO ALTGR ---
-    // Força o Alt Direito a funcionar como seletor de 3º nível (AltGr)
+
     key <RALT> { type[Group1]="ONE_LEVEL", [ ISO_Level3_Shift ] };
     modifier_map Mod5 { ISO_Level3_Shift };
 
@@ -30,8 +28,8 @@ xkb_symbols "basic" {
     key <AE12> { [ equal, plus, multiply, division ] };
 
     // Fileira QWERTY
-    key <AD01> { [ q, Q, acircumflex, Adiaeresis ] };
-    key <AD02> { [ w, W, agrave, Aring ] };
+    key <AD01> { [ q, Q, acircumflex, Acircumflex ] };
+    key <AD02> { [ w, W, agrave, Agrave ] };
     key <AD03> { [ e, E, eacute, Eacute ] };
     key <AD04> { [ r, R, registered, NoSymbol ] };
     key <AD05> { [ t, T, thorn, THORN ] };
@@ -39,33 +37,33 @@ xkb_symbols "basic" {
     key <AD07> { [ u, U, uacute, Uacute ] };
     key <AD08> { [ i, I, iacute, Iacute ] };
     key <AD09> { [ o, O, oacute, Oacute ] };
-    key <AD10> { [ p, P, otilde, Odiaeresis ] };
+    key <AD10> { [ p, P, otilde, Otilde ] };
     key <AD11> { [ bracketleft, braceleft, Escape, guillemotleft ] };
     key <AD12> { [ bracketright, braceright, NoSymbol, guillemotright ] };
     key <BKSL> { [ backslash, bar, notsign, brokenbar ] };
 
     // Fileira ASDFG
     key <AC01> { [ a, A, aacute, Aacute ] };
-    key <AC02> { [ s, S, atilde, section ] };
-    key <AC03> { [ d, D, ecircumflex, ETH ] };
-    key <AC04> { [ f, F, parenleft, NoSymbol ] };
-    key <AC05> { [ g, G, parenright, NoSymbol ] };
+    key <AC02> { [ s, S, atilde, Atilde ] };
+    key <AC03> { [ d, D, ecircumflex, Ecircumflex ] };
+    key <AC04> { [ f, F, parenleft, dollar ] };
+    key <AC05> { [ g, G, parenright, ampersand ] };
     key <AC06> { [ h, H, underscore, NoSymbol ] };
-    key <AC07> { [ j, J, equal, NoSymbol ] };
-    key <AC08> { [ k, K, plus, NoSymbol ] };
+    key <AC07> { [ j, J, equal, asterisk ] };
+    key <AC08> { [ k, K, plus, asciicircum ] };
     key <AC09> { [ l, L, minus, Ooblique ] };
-    key <AC10> { [ semicolon, colon, ocircumflex, degree ] };
+    key <AC10> { [ semicolon, colon, ocircumflex, Ocircumflex ] };
     key <AC11> { [ apostrophe, quotedbl, pilcrow, diaeresis ] };
 
     // Fileira ZXCVB
     key <AB01> { [ z, Z, ae, AE ] };
     key <AB02> { [ x, X, asciitilde, NoSymbol ] };
-    key <AB03> { [ c, C, ccedilla, cent ] };
+    key <AB03> { [ c, C, ccedilla, Ccedilla ] };
     key <AB04> { [ v, V, copyright, NoSymbol ] };
     key <AB05> { [ b, B, ssharp, NoSymbol ] };
     key <AB06> { [ n, N, ntilde, Ntilde ] };
     key <AB07> { [ m, M, mu, NoSymbol ] };
-    key <AB08> { [ comma, less, eth, Ccedilla ] };
+    key <AB08> { [ comma, less, eth, cent ] };
     key <AB09> { [ period, greater, oslash, NoSymbol ] };
     key <AB10> { [ slash, question, questiondown, NoSymbol ] };
 
