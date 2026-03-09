@@ -12,9 +12,9 @@
 
 ---
 
-<img src="https://raw.githubusercontent.com/mhbs12/BrUS/main/assets/keyboard-preview.png" alt="BrUS Keyboard Preview" width="800">
+<img src="https://keyboardsimulator.xyz/?cc=eeeeee&cf=brushed&colorway=blacklight&legend=cherry&size=60&sub=greek" alt="ANSI 60% Keyboard Preview" width="800">
 
-*Layout ideal para teclados 60% no padrão US - programe, escreva em português e inglês sem mover as mãos*
+*Layout pensado para teclados 60% ANSI, mas pode funcionar em outros modelos ANSI também, se sentir falta de alguma tecla ou atalho, baixe o source code e deixe do seu jeito - programe, escreva em português e inglês sem mover as mãos*
 
 </div>
 
@@ -22,7 +22,7 @@
 
 ## 📖 Sobre
 
-O **BrUS** é um layout de teclado customizado, focado em usuários de **teclados 60% no padrão US** que precisam escrever em **Português Brasileiro**, **Inglês** e **programar** de forma eficiente. Combina a praticidade do layout US com acesso direto a caracteres acentuados.
+O **BrUS** é um layout de teclado customizado, focado em usuários de **teclados no padrão ANSI** que precisam escrever em **Português Brasileiro**, **Inglês** e **programar** de forma eficiente. Combina a praticidade do layout US com acesso direto a caracteres acentuados.
 
 ### 🎯 O Diferencial
 
@@ -298,7 +298,7 @@ As teclas mortas permitem criar caracteres acentuados pressionando primeiro o ac
 
 ---
 
-## 🔢 Camada Numérica (AltGr + Space)
+## 🔢 Camada Numérica (AltGr + Space) (Somente para Linux, feito com XCompose)
 
 Uma característica especial do BrUS é a camada numérica ativada por `AltGr + Space`. Pressione `AltGr + Space` (dead key) e depois a tecla desejada:
 
