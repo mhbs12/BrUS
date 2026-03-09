@@ -12,7 +12,7 @@
 
 ---
 
-<img src="https://keyboardsimulator.xyz/?cc=eeeeee&cf=brushed&colorway=blacklight&legend=cherry&size=60&sub=greek" alt="ANSI 60% Keyboard Preview" width="800">
+<a href="https://keyboardsimulator.xyz/?cc=eeeeee&cf=brushed&colorway=blacklight&legend=cherry&size=60&sub=greek">ANSI 60% Keyboard Preview</a>
 
 *Layout pensado para teclados 60% ANSI, mas pode funcionar em outros modelos ANSI também, se sentir falta de alguma tecla ou atalho, baixe o source code e deixe do seu jeito - programe, escreva em português e inglês sem mover as mãos*
 
